@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 918px;
+            height: 570px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/adm3_0.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-5.295703362988301,22.897358784176213],[3.823896861748051,37.60431970998343]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_adm3_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>adm0_nm</strong><br />' + (feature.properties['adm0_nm'] !== null ? Autolinker.link(feature.properties['adm0_nm'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>adm1_nm</strong><br />' + (feature.properties['adm1_nm'] !== null ? Autolinker.link(feature.properties['adm1_nm'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>adm2_nm</strong><br />' + (feature.properties['adm2_nm'] !== null ? Autolinker.link(feature.properties['adm2_nm'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>adm3_nm</strong><br />' + (feature.properties['adm3_nm'] !== null ? Autolinker.link(feature.properties['adm3_nm'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>dat_src</strong><br />' + (feature.properties['dat_src'] !== null ? Autolinker.link(feature.properties['dat_src'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>date_dt</strong><br />' + (feature.properties['date_dt'] !== null ? Autolinker.link(feature.properties['date_dt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>id</strong><br />' + (feature.properties['id'] !== null ? Autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>area</strong><br />' + (feature.properties['area'] !== null ? Autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>adm1_pc</strong><br />' + (feature.properties['adm1_pc'] !== null ? Autolinker.link(feature.properties['adm1_pc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>adm2_pc</strong><br />' + (feature.properties['adm2_pc'] !== null ? Autolinker.link(feature.properties['adm2_pc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>adm3_pc</strong><br />' + (feature.properties['adm3_pc'] !== null ? Autolinker.link(feature.properties['adm3_pc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>a3__201</strong><br />' + (feature.properties['a3__201'] !== null ? Autolinker.link(feature.properties['a3__201'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_adm3_0_0() {
+            return {
+                pane: 'pane_adm3_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(31,120,180,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_adm3_0');
+        map.getPane('pane_adm3_0').style.zIndex = 400;
+        map.getPane('pane_adm3_0').style['mix-blend-mode'] = 'normal';
+        var layer_adm3_0 = new L.geoJson(json_adm3_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_adm3_0',
+            layerName: 'layer_adm3_0',
+            pane: 'pane_adm3_0',
+            onEachFeature: pop_adm3_0,
+            style: style_adm3_0_0,
+        });
+        bounds_group.addLayer(layer_adm3_0);
+        map.addLayer(layer_adm3_0);
+        setBounds();
+        var i = 0;
+        layer_adm3_0.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['adm3_nm'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['adm3_nm']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_adm3_0'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_adm3_0]);
+        map.on("zoomend", function(){
+            resetLabels([layer_adm3_0]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_adm3_0]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_adm3_0]);
+        });
+        </script>
+    </body>
+</html>
